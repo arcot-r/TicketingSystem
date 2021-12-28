@@ -11,4 +11,12 @@
 	</properties>
 	<name>TicketingSystem</name>
 	<description>Metro Ticketing System for Regular Commuters</description>
+	<dependencies>
+		<dependency>
+			<groupId>org.junit.jupiter</groupId>
+			<artifactId>junit-jupiter-api</artifactId>
+			<version>5.7.1</version>
+			<scope>test</scope>
+		</dependency>
+	</dependencies>
 </project>
