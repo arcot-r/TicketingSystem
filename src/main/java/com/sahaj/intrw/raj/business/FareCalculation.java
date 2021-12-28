@@ -1,5 +1,5 @@
 package com.sahaj.intrw.raj.business;
 
-public interface PeakCalculation {
+public interface FareCalculation {
 
 }
