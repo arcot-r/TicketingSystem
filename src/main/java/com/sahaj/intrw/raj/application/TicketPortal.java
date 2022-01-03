@@ -16,4 +16,9 @@ public class TicketPortal {
 		return 0;
 	}
 
+	public Integer computeTotalFare(Commuter c) {
+
+		return 0;
+	}
+
 }

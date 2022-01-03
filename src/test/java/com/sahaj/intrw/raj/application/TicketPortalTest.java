@@ -45,11 +45,13 @@ class TicketPortalTest {
 	void tearDown() throws Exception {
 	}
 
-	/**
-	 * Test method for {@link com.sahaj.intrw.raj.application.TicketPortal#getNextFare(com.sahaj.intrw.raj.model.Commuter)}.
-	 */
 	@Test
 	final void testGetNextFare() {
+		fail("Not yet implemented"); // TODO
+	}
+
+	@Test
+	final void testComputeTotalFare() {
 		fail("Not yet implemented"); // TODO
 	}
 
