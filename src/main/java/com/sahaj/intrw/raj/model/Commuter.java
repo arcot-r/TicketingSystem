@@ -5,10 +5,8 @@ import java.util.List;
 public class Commuter {
 	List<Trip> tripList;
 	String name;
-	boolean hasDailyCapReached;
-	boolean hasWeeklyCapReached;
-	Integer cumulatedDailyFare = 0;
-	Integer cumulativeWeeklyFare = 0;
+	boolean dailyCapReached;
+	boolean weeklyCapReached;
 
 	public List<Trip> getTripList() {
 		return tripList;
@@ -26,28 +24,20 @@ public class Commuter {
 		this.name = name;
 	}
 
-	public boolean hasDailyCapReached() {
-		return hasDailyCapReached;
+	public boolean isDailyCapReached() {
+		return dailyCapReached;
 	}
 
-	public boolean hasWeeklyCapReached() {
-		return hasWeeklyCapReached;
+	public void setDailyCapReached(boolean dailyCapReached) {
+		this.dailyCapReached = dailyCapReached;
 	}
 
-	public Integer getCumulatedDailyFare() {
-		return cumulatedDailyFare;
+	public boolean isWeeklyCapReached() {
+		return weeklyCapReached;
 	}
 
-	public void setCumulatedDailyFare(Integer cumulatedDailyFare) {
-		this.cumulatedDailyFare += cumulatedDailyFare;
-	}
-
-	public Integer getCumulativeWeeklyFare() {
-		return cumulativeWeeklyFare;
-	}
-
-	public void setCumulativeWeeklyFare(Integer cumulativeWeeklyFare) {
-		this.cumulativeWeeklyFare += cumulativeWeeklyFare;
+	public void setWeeklyCapReached(boolean weeklyCapReached) {
+		this.weeklyCapReached = weeklyCapReached;
 	}
 
 }

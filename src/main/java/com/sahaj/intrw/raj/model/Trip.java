@@ -9,6 +9,7 @@ public class Trip {
 	private Integer toZone;
 	private Integer calculatedFare;
 	private Calendar tripTime;
+	private Integer fareTrip;
 
 	public DayOfWeek getDay() {
 		return day;
@@ -48,6 +49,14 @@ public class Trip {
 
 	public void setTripTime(Calendar tripTime) {
 		this.tripTime = tripTime;
+	}
+
+	public Integer getFareTrip() {
+		return fareTrip;
+	}
+
+	public void setFareTrip(Integer fareTrip) {
+		this.fareTrip = fareTrip;
 	}
 
 	@Override
