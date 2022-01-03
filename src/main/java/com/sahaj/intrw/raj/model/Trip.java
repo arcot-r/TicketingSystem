@@ -7,9 +7,8 @@ public class Trip {
 	private DayOfWeek day;
 	private Integer fromZone;
 	private Integer toZone;
-	private Integer calculatedFare;
 	private Calendar tripTime;
-	private Integer fareTrip;
+	private Integer fare;
 
 	public DayOfWeek getDay() {
 		return day;
@@ -35,14 +34,6 @@ public class Trip {
 		this.toZone = toZone;
 	}
 
-	public Integer getCalculatedFare() {
-		return calculatedFare;
-	}
-
-	public void setCalculatedFare(Integer calculatedFare) {
-		this.calculatedFare = calculatedFare;
-	}
-
 	public Calendar getTripTime() {
 		return tripTime;
 	}
@@ -51,18 +42,18 @@ public class Trip {
 		this.tripTime = tripTime;
 	}
 
-	public Integer getFareTrip() {
-		return fareTrip;
+	public Integer getFare() {
+		return fare;
 	}
 
-	public void setFareTrip(Integer fareTrip) {
-		this.fareTrip = fareTrip;
+	public void setFare(Integer fare) {
+		this.fare = fare;
 	}
 
 	@Override
 	public String toString() {
-		return "Trip [day=" + day + ", fromZone=" + fromZone + ", toZone=" + toZone + ", calculatedFare="
-				+ calculatedFare + ", tripTime=" + tripTime + "]";
+		return "Trip [day=" + day + ", fromZone=" + fromZone + ", toZone=" + toZone + ", tripTime=" + tripTime
+				+ ", fare=" + fare + "]";
 	}
 
 }
