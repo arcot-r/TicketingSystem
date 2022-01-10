@@ -33,6 +33,7 @@ public class TicketPortal {
 	// service method for calculating the fare
 	public Integer computeTotalFare(Commuter c) {
 		int fare = 0;
+		//Applicable Cap based on longest travel
 		for (Trip trip : c.getTripList()) {
 			int tripFare = processFare(trip);
 			trip.setFare(tripFare);
