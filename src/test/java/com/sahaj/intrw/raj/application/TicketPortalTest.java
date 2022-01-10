@@ -11,36 +11,21 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import com.sahaj.intrw.raj.model.Commuter;
+
 /**
  * @author Raj
  *
  */
 class TicketPortalTest {
+	
+	Commuter commuter;
 
-	/**
-	 * @throws java.lang.Exception
-	 */
-	@BeforeAll
-	static void setUpBeforeClass() throws Exception {
-	}
-
-	/**
-	 * @throws java.lang.Exception
-	 */
-	@AfterAll
-	static void tearDownAfterClass() throws Exception {
-	}
-
-	/**
-	 * @throws java.lang.Exception
-	 */
 	@BeforeEach
 	void setUp() throws Exception {
+		
 	}
 
-	/**
-	 * @throws java.lang.Exception
-	 */
 	@AfterEach
 	void tearDown() throws Exception {
 	}

@@ -7,6 +7,12 @@ public class Commuter {
 	String name;
 	boolean dailyCapReached;
 	boolean weeklyCapReached;
+	Integer dailyFare;
+	Integer weeklyFare;
+	
+	Commuter(String name){
+		this.name=name;
+	}
 
 	public List<Trip> getTripList() {
 		return tripList;
@@ -39,5 +45,30 @@ public class Commuter {
 	public void setWeeklyCapReached(boolean weeklyCapReached) {
 		this.weeklyCapReached = weeklyCapReached;
 	}
+
+	public Integer getDailyFare() {
+		return dailyFare;
+	}
+
+	public void setDailyFare(Integer dailyFare) {
+		this.dailyFare = dailyFare;
+	}
+
+	public Integer getWeeklyFare() {
+		return weeklyFare;
+	}
+
+	public void setWeeklyFare(Integer weeklyFare) {
+		this.weeklyFare = weeklyFare;
+	}
+
+	@Override
+	public String toString() {
+		return "Commuter [tripList=" + tripList + ", name=" + name + ", dailyCapReached=" + dailyCapReached
+				+ ", weeklyCapReached=" + weeklyCapReached + ", dailyFare=" + dailyFare + ", weeklyFare=" + weeklyFare
+				+ "]";
+	}
+
+
 
 }
