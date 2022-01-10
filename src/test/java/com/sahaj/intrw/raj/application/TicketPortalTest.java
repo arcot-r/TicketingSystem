@@ -48,9 +48,10 @@ class TicketPortalTest {
 	final void testComputeTotalFare_DailyCap() {
 		// Arrange
 		List<Trip> trips = new ArrayList<Trip>();
-		Trip trip = new Trip();
+		Trip trip;
 		Calendar cal;
 		// Row 1
+		trip = new Trip();
 		trip.setDay(DayOfWeek.MONDAY);
 		cal = Calendar.getInstance();
 		cal.set(Calendar.HOUR_OF_DAY, 10);
@@ -60,6 +61,7 @@ class TicketPortalTest {
 		trip.setToZone(1);
 		trips.add(trip);
 		// Row 2
+		trip = new Trip();
 		trip.setDay(DayOfWeek.MONDAY);
 		cal = Calendar.getInstance();
 		cal.set(Calendar.HOUR_OF_DAY, 10);
@@ -69,6 +71,7 @@ class TicketPortalTest {
 		trip.setToZone(1);
 		trips.add(trip);
 		// Row 3
+		trip = new Trip();
 		trip.setDay(DayOfWeek.MONDAY);
 		cal = Calendar.getInstance();
 		cal.set(Calendar.HOUR_OF_DAY, 16);
@@ -78,6 +81,7 @@ class TicketPortalTest {
 		trip.setToZone(1);
 		trips.add(trip);
 		// Row 4
+		trip = new Trip();
 		trip.setDay(DayOfWeek.MONDAY);
 		cal = Calendar.getInstance();
 		cal.set(Calendar.HOUR_OF_DAY, 18);
@@ -87,6 +91,7 @@ class TicketPortalTest {
 		trip.setToZone(1);
 		trips.add(trip);
 		// Row 5
+		trip = new Trip();
 		trip.setDay(DayOfWeek.MONDAY);
 		cal = Calendar.getInstance();
 		cal.set(Calendar.HOUR_OF_DAY, 19);
@@ -100,7 +105,7 @@ class TicketPortalTest {
 		// Action
 		Integer total = portal.computeTotalFare(commuter);
 		// Assert
-		assertEquals(35, total);
+		assertEquals(150, total);
 	}
 
 	final void testComputeTotalFare_WeeklyCap() {
