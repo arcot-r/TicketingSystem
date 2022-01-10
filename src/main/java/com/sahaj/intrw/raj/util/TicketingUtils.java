@@ -43,10 +43,4 @@ public class TicketingUtils {
 		return trip.getDay() == DayOfWeek.SATURDAY || trip.getDay() == DayOfWeek.SUNDAY;
 	}
 
-	public static void main(String[] args) {
-		TicketingUtils util = new TicketingUtils();
-		String time = util.getPropValue("peak.hours.weekday.morning.end");
-
-//		System.out.println(hour + ":::::" + min);
-	}
 }

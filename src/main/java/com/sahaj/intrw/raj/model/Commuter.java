@@ -1,5 +1,6 @@
 package com.sahaj.intrw.raj.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Commuter {
@@ -10,8 +11,9 @@ public class Commuter {
 	Integer dailyFare;
 	Integer weeklyFare;
 	
-	Commuter(String name){
+	public Commuter(String name){
 		this.name=name;
+		this.tripList = new ArrayList<Trip>();
 	}
 
 	public List<Trip> getTripList() {

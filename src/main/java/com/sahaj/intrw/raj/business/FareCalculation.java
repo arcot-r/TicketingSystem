@@ -22,8 +22,8 @@ public abstract class FareCalculation {
 
 	protected int[] getTime(String key) {
 		String time = util.getPropValue(key);
-		int[] array = Arrays.stream(time.split(":")).mapToInt(Integer::parseInt).toArray();
-		return array;
+		String[] times = time.split(":");
+		return Arrays.stream(times).mapToInt(Integer::parseInt).toArray();
 
 	}
 

@@ -34,11 +34,12 @@ public class TicketPortal {
 	public Integer computeTotalFare(Commuter c) {
 		int fare = 0;
 		for (Trip trip : c.getTripList()) {
-
-			fare += processFare(trip);
+			int tripFare = processFare(trip);
+			trip.setFare(tripFare);
+			fare += tripFare;
 		}
-
-		return 0;
+		c.setDailyFare(fare);
+		return fare;
 	}
 
 	private Integer processFare(Trip trip) {
