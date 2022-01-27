@@ -1,5 +1,6 @@
 package com.sahaj.intrw.raj.business;
 
+import com.sahaj.intrw.raj.model.Commuter;
 import com.sahaj.intrw.raj.util.TicketingUtils;
 import com.sahaj.intrw.raj.util.Zones;
 

@@ -3,6 +3,8 @@
  */
 package com.sahaj.intrw.raj.application;
 
+import java.time.DayOfWeek;
+
 import com.sahaj.intrw.raj.business.FareCalculation;
 import com.sahaj.intrw.raj.business.FareCapping;
 import com.sahaj.intrw.raj.business.impl.WeekdayFare;
@@ -18,8 +20,7 @@ import com.sahaj.intrw.raj.util.Zones;
  */
 public class TicketPortal {
 
-	FareCapping dailyCap;
-	FareCapping weeklyCap;
+	FareCapping fareCap;
 
 	FareCalculation fareCal;
 
@@ -35,25 +36,37 @@ public class TicketPortal {
 	// service method for calculating the fare
 	public Integer computeTotalFare(Commuter c) {
 		int fare = 0;
-		c.updateApplicableZones(dailyCap, weeklyCap);
-		int dailyCapfare = dailyCap.getCapFare();
-		int weeklyCapFare = weeklyCap.getCapFare();
-		//Applicable Cap based on longest travel
+		Zones zone = util.getApplicableZone(c);
+		int dailyCapfare = fareCap.getCapFare();
+
+		DayOfWeek dayReset = null;
+		// Applicable Cap is based on longest travel
 		for (Trip trip : c.getTripList()) {
-			int tripFare = computeFare(trip);
-			if(c.getDailyFare()+tripFare > dailyCapfare) {
-				int diff = c.getDailyFare() +tripFare - dailyCapfare;
-				tripFare-=diff; 
+			if (dayReset == null) {
+				dayReset = trip.getDay();
+			} else {
+				if(!trip.getDay().equals(dayReset)) {
+					c.resetDailyFare();
+				}
+				if(trip.getDay().equals(DayOfWeek.SUNDAY)) {
+					c.resetWeeklyFare();
+				}
+			}
+
+			int tripFare = processTripFare(trip);
+			if (c.getDailyFare() + tripFare > dailyCapfare) {
+				int diff = c.getDailyFare() + tripFare - dailyCapfare;
+				tripFare -= diff;
 			}
 			trip.setFare(tripFare);
 			fare += tripFare;
 		}
-		c.setDailyFare(fare);
+		c.addDailyFare(fare);
+		c.addWeeklyFare(fare);
 		return fare;
 	}
 
-	
-	private Integer computeFare(Trip trip) {
+	private Integer processTripFare(Trip trip) {
 		fareCal = util.isWeekend(trip) ? new WeekendFare() : new WeekdayFare();
 		return fareCal.getFare(trip);
 

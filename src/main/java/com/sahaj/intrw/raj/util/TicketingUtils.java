@@ -1,11 +1,11 @@
 package com.sahaj.intrw.raj.util;
 
 import java.io.IOException;
-
 import java.io.InputStream;
 import java.time.DayOfWeek;
 import java.util.Properties;
 
+import com.sahaj.intrw.raj.model.Commuter;
 import com.sahaj.intrw.raj.model.Trip;
 
 public class TicketingUtils {
@@ -42,6 +42,27 @@ public class TicketingUtils {
 
 	public boolean isWeekend(Trip trip) {
 		return trip.getDay() == DayOfWeek.SATURDAY || trip.getDay() == DayOfWeek.SUNDAY;
+	}
+
+	public Zones getApplicableZone(Commuter commuter) {
+		Zones applicableZone = null;
+		for (Trip trip : commuter.getTripList()) {
+			Zones tripZone = getTripZone(trip);
+			if (applicableZone == null) {
+				applicableZone = tripZone;
+			}
+			if (tripZone.getZoneCodes() > applicableZone.getZoneCodes())
+				applicableZone = tripZone;
+		}
+		return applicableZone;
+	}
+
+	public Zones getTripZone(Trip trip) {
+		if (trip.getFromZone() != trip.getToZone()) {// Different Zones
+			return Zones.ZONE1TO2;
+		} else {// Same zones
+			return (trip.getFromZone() == 1) ? Zones.ZONE1TO1 : Zones.ZONE2TO2;
+		}
 	}
 
 }

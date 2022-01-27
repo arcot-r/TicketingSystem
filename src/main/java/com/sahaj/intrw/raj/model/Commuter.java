@@ -3,9 +3,6 @@ package com.sahaj.intrw.raj.model;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.sahaj.intrw.raj.business.FareCapping;
-import com.sahaj.intrw.raj.util.Zones;
-
 public class Commuter {
 	List<Trip> tripList;
 	String name;
@@ -60,38 +57,24 @@ public class Commuter {
 		return dailyFare;
 	}
 
-	public void setDailyFare(Integer dailyFare) {
-		this.dailyFare = dailyFare;
+	public void resetDailyFare() {
+		this.dailyFare = 0;
+	}
+
+	public void addDailyFare(Integer dailyFare) {
+		this.dailyFare += dailyFare;
 	}
 
 	public Integer getWeeklyFare() {
 		return weeklyFare;
 	}
 
-	public void setWeeklyFare(Integer weeklyFare) {
-		this.weeklyFare = weeklyFare;
+	public void resetWeeklyFare() {
+		this.weeklyFare = 0;
 	}
 
-	public void updateApplicableZones(FareCapping dailyCap, FareCapping weeklyCap) {
-		Zones applicableZone = null;
-		for (Trip trip : this.tripList) {
-			if (applicableZone == null) {
-				applicableZone = getApplicableZone(trip);
-			}
-			if (getApplicableZone(trip).getZoneCodes() > applicableZone.getZoneCodes())
-				applicableZone = getApplicableZone(trip);
-		}
-		dailyCap.setZone(applicableZone);
-		weeklyCap.setZone(applicableZone);
-
-	}
-
-	public Zones getApplicableZone(Trip trip) {
-		if (trip.getFromZone() != trip.getToZone()) {// Different Zones
-			return Zones.ZONE1TO2;
-		} else {// Same zones
-			return (trip.getFromZone() == 1) ? Zones.ZONE1TO1 : Zones.ZONE2TO2;
-		}
+	public void addWeeklyFare(Integer weeklyFare) {
+		this.weeklyFare += weeklyFare;
 	}
 
 	@Override
