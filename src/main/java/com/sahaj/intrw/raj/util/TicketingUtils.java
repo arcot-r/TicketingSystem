@@ -44,12 +44,4 @@ public class TicketingUtils {
 		return trip.getDay() == DayOfWeek.SATURDAY || trip.getDay() == DayOfWeek.SUNDAY;
 	}
 
-	public Zones getApplicableZone(Trip trip) {
-		if (trip.getFromZone() != trip.getToZone()) {// Different Zones
-			return Zones.ZONE1TO2;
-		} else {// Same zones
-			return (trip.getFromZone() == 1) ? Zones.ZONE1TO1 : Zones.ZONE2TO2;
-		}
-	}
-
 }
