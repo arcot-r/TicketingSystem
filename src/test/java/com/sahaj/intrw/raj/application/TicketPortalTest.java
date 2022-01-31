@@ -319,16 +319,16 @@ class TicketPortalTest {
 		trip.setDay(DayOfWeek.FRIDAY);
 		cal = Calendar.getInstance();
 		cal.set(Calendar.HOUR_OF_DAY, 10);
-		cal.set(Calendar.MINUTE, 20);
+		cal.set(Calendar.MINUTE, 40);
 		trip.setTripTime(cal);
-		trip.setFromZone(2);
+		trip.setFromZone(1);
 		trip.setToZone(1);
 		trips.add(trip);
 		// FRIDAY: Row 2
 		trip = new Trip();
 		trip.setDay(DayOfWeek.FRIDAY);
 		cal = Calendar.getInstance();
-		cal.set(Calendar.HOUR_OF_DAY, 10);
+		cal.set(Calendar.HOUR_OF_DAY, 11);
 		cal.set(Calendar.MINUTE, 45);
 		trip.setTripTime(cal);
 		trip.setFromZone(1);
@@ -338,31 +338,11 @@ class TicketPortalTest {
 		trip = new Trip();
 		trip.setDay(DayOfWeek.FRIDAY);
 		cal = Calendar.getInstance();
-		cal.set(Calendar.HOUR_OF_DAY, 16);
+		cal.set(Calendar.HOUR_OF_DAY, 17);
 		cal.set(Calendar.MINUTE, 15);
 		trip.setTripTime(cal);
 		trip.setFromZone(1);
 		trip.setToZone(1);
-		trips.add(trip);
-		// FRIDAY: Row 4
-		trip = new Trip();
-		trip.setDay(DayOfWeek.FRIDAY);
-		cal = Calendar.getInstance();
-		cal.set(Calendar.HOUR_OF_DAY, 18);
-		cal.set(Calendar.MINUTE, 15);
-		trip.setTripTime(cal);
-		trip.setFromZone(1);
-		trip.setToZone(1);
-		trips.add(trip);
-		// FRIDAY: Row 5
-		trip = new Trip();
-		trip.setDay(DayOfWeek.FRIDAY);
-		cal = Calendar.getInstance();
-		cal.set(Calendar.HOUR_OF_DAY, 19);
-		cal.set(Calendar.MINUTE, 00);
-		trip.setTripTime(cal);
-		trip.setFromZone(1);
-		trip.setToZone(2);
 		trips.add(trip);
 
 		// SATURDAY: Row 1
@@ -379,42 +359,13 @@ class TicketPortalTest {
 		trip = new Trip();
 		trip.setDay(DayOfWeek.SATURDAY);
 		cal = Calendar.getInstance();
-		cal.set(Calendar.HOUR_OF_DAY, 10);
+		cal.set(Calendar.HOUR_OF_DAY, 11);
 		cal.set(Calendar.MINUTE, 45);
-		trip.setTripTime(cal);
-		trip.setFromZone(1);
-		trip.setToZone(1);
-		trips.add(trip);
-		// SATURDAY: Row 3
-		trip = new Trip();
-		trip.setDay(DayOfWeek.SATURDAY);
-		cal = Calendar.getInstance();
-		cal.set(Calendar.HOUR_OF_DAY, 16);
-		cal.set(Calendar.MINUTE, 15);
-		trip.setTripTime(cal);
-		trip.setFromZone(1);
-		trip.setToZone(1);
-		trips.add(trip);
-		// SATURDAY: Row 4
-		trip = new Trip();
-		trip.setDay(DayOfWeek.SATURDAY);
-		cal = Calendar.getInstance();
-		cal.set(Calendar.HOUR_OF_DAY, 18);
-		cal.set(Calendar.MINUTE, 15);
-		trip.setTripTime(cal);
-		trip.setFromZone(1);
-		trip.setToZone(1);
-		trips.add(trip);
-		// SATURDAY: Row 5
-		trip = new Trip();
-		trip.setDay(DayOfWeek.SATURDAY);
-		cal = Calendar.getInstance();
-		cal.set(Calendar.HOUR_OF_DAY, 19);
-		cal.set(Calendar.MINUTE, 00);
 		trip.setTripTime(cal);
 		trip.setFromZone(1);
 		trip.setToZone(2);
 		trips.add(trip);
+		
 
 		// SUNDAY: Row 1
 		trip = new Trip();
