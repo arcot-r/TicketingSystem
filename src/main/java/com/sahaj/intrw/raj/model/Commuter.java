@@ -1,6 +1,6 @@
 package com.sahaj.intrw.raj.model;
 
-import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 public class Commuter {
@@ -14,7 +14,7 @@ public class Commuter {
 	public Commuter(String name) {
 		// initializations
 		this.name = name;
-		this.tripList = new ArrayList<Trip>();
+		this.tripList = new LinkedList<Trip>();
 		this.dailyFare = 0;
 		this.weeklyFare = 0;
 		this.dailyCapReached = false;

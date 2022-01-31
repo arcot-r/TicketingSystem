@@ -17,10 +17,10 @@ public class WeeklyFareCapping extends FareCapping {
 			return util.getPropIntValue(ZONE1TO2_CAP);
 		case ZONE2TO2:
 			return util.getPropIntValue(ZONE2TO2_CAP);
+		default:
+			return 0;
+
 		}
-		return 0;
 	}
-
-
 
 }

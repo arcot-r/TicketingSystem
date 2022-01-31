@@ -7,8 +7,10 @@ import java.time.DayOfWeek;
 
 import com.sahaj.intrw.raj.business.FareCalculation;
 import com.sahaj.intrw.raj.business.FareCapping;
+import com.sahaj.intrw.raj.business.impl.DailyFareCapping;
 import com.sahaj.intrw.raj.business.impl.WeekdayFare;
 import com.sahaj.intrw.raj.business.impl.WeekendFare;
+import com.sahaj.intrw.raj.business.impl.WeeklyFareCapping;
 import com.sahaj.intrw.raj.model.Commuter;
 import com.sahaj.intrw.raj.model.Trip;
 import com.sahaj.intrw.raj.util.TicketingUtils;
@@ -26,49 +28,67 @@ public class TicketPortal {
 
 	TicketingUtils util = new TicketingUtils();
 
-	// utility method to find out the next fare after the daily/weekly capping and
-	// peak hour calculations
-	public Integer getNextFare(Commuter c) {
-
-		return 0;
-	}
-
 	// service method for calculating the fare
-	public Integer computeTotalFare(Commuter c) {
+	public Integer computeTotalFare(Commuter commuter) {
 		int fare = 0;
-		Zones zone = util.getApplicableZone(c);
-		int dailyCapfare = fareCap.getCapFare();
+		boolean isDaily = true;
+		int dailyCapfare = getCappedFare(commuter, isDaily);
+		int weeklyCapFare = getCappedFare(commuter, !isDaily);
 
-		DayOfWeek dayReset = null;
+		DayOfWeek prevDay = null;
 		// Applicable Cap is based on longest travel
-		for (Trip trip : c.getTripList()) {
-			if (dayReset == null) {
-				dayReset = trip.getDay();
-			} else {
-				if(!trip.getDay().equals(dayReset)) {
-					c.resetDailyFare();
-				}
-				if(trip.getDay().equals(DayOfWeek.SUNDAY)) {
-					c.resetWeeklyFare();
-				}
+		for (Trip trip : commuter.getTripList()) {
+			if (prevDay == null) {
+				prevDay = trip.getDay();
+			}
+			// if previous day is not equal to today == Day Changed.
+			if (!trip.getDay().equals(prevDay)) {
+				commuter.resetDailyFare();
+				commuter.setDailyCapReached(false);
+			}
+			// if previous day is greater than or equal to sunday AND today is monday ==
+			// Week changed.
+			if (DayOfWeek.SUNDAY.compareTo(prevDay) >= 0 && trip.getDay().equals(DayOfWeek.MONDAY)) {
+				commuter.resetWeeklyFare();
+				commuter.setWeeklyCapReached(false);
 			}
 
-			int tripFare = processTripFare(trip);
-			if (c.getDailyFare() + tripFare > dailyCapfare) {
-				int diff = c.getDailyFare() + tripFare - dailyCapfare;
-				tripFare -= diff;
+			int tripFare = getPeakFare(trip);
+
+			// Fare Capping Reached
+			if (commuter.isDailyCapReached() || commuter.isWeeklyCapReached()) {
+				tripFare = 0;
+			} else {
+				// Near to Fare Cap limits
+				if (commuter.getDailyFare() + tripFare > dailyCapfare) {
+					commuter.setDailyCapReached(true);
+					tripFare -= commuter.getDailyFare() + tripFare - dailyCapfare;
+				} else if (commuter.getWeeklyFare() + tripFare > weeklyCapFare) {
+					commuter.setWeeklyCapReached(true);
+					tripFare -= commuter.getWeeklyFare() + tripFare - weeklyCapFare;
+				}
+
 			}
 			trip.setFare(tripFare);
 			fare += tripFare;
+			commuter.addDailyFare(tripFare);
+			commuter.addWeeklyFare(tripFare);
 		}
-		c.addDailyFare(fare);
-		c.addWeeklyFare(fare);
+
 		return fare;
 	}
 
-	private Integer processTripFare(Trip trip) {
+	private Integer getPeakFare(Trip trip) {
 		fareCal = util.isWeekend(trip) ? new WeekendFare() : new WeekdayFare();
 		return fareCal.getFare(trip);
+
+	}
+
+	private Integer getCappedFare(Commuter commuter, boolean isDaily) {
+		fareCap = isDaily ? new DailyFareCapping() : new WeeklyFareCapping();
+		Zones zone = util.getApplicableZone(commuter);
+		fareCap.setZone(zone);
+		return fareCap.getCapFare();
 
 	}
 
